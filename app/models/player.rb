@@ -14,8 +14,12 @@
 #
 
 class Player < ActiveRecord::Base
+	has_secure_password
 	belongs_to :club
 	has_and_belongs_to_many :teams
 	has_many :matches
 	has_many :outcomes, :through => :matches
+
+	validates :name, :presence => true, :uniqueness => true, :length => {:minimum => 2}
+	validates :email, :presence => true, :uniqueness => true
 end

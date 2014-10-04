@@ -11,4 +11,5 @@
 
 class Division < ActiveRecord::Base
 	belongs_to :competition
+	has_many :teams
 end

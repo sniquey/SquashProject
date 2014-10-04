@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141004040446) do
+ActiveRecord::Schema.define(version: 20141004074103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20141004040446) do
 
   create_table "outcomes", force: true do |t|
     t.integer  "player_id"
+    t.integer  "match_id"
     t.boolean  "result"
     t.integer  "games"
     t.integer  "points"
@@ -63,12 +64,13 @@ ActiveRecord::Schema.define(version: 20141004040446) do
   create_table "players", force: true do |t|
     t.string   "name"
     t.float    "matrix"
-    t.string   "email"
     t.integer  "phone"
-    t.text     "photo"
     t.integer  "club_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
+    t.string   "password_digest"
+    t.text     "avatar",          default: "http://top10hm.com/wp-content/uploads/2012/06/Squash-300x200.jpg"
   end
 
   create_table "players_teams", id: false, force: true do |t|
