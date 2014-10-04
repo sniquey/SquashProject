@@ -4,6 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  player_id     :integer
+#  match_id      :integer
 #  result        :boolean
 #  games         :integer
 #  points        :integer
