@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Player:</strong>
+  <%= @outcome.player_id %>
+</p>
+
+<p>
+  <strong>Result:</strong>
+  <%= @outcome.result %>
+</p>
+
+<p>
+  <strong>Games:</strong>
+  <%= @outcome.games %>
+</p>
+
+<p>
+  <strong>Points:</strong>
+  <%= @outcome.points %>
+</p>
+
+<p>
+  <strong>Matrix change:</strong>
+  <%= @outcome.matrix_change %>
+</p>
+
+<p>
+  <strong>Matrix:</strong>
+  <%= @outcome.matrix %>
+</p>
+
+<%= link_to 'Edit', edit_outcome_path(@outcome) %> |
+<%= link_to 'Back', outcomes_path %>
