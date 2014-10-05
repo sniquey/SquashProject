@@ -16,8 +16,12 @@
   <tbody>
     <% @outcomes.each do |outcome| %>
       <tr>
-        <td><%= outcome.player_id %></td>
-        <td><%= outcome.result %></td>
+        <td><%= Player.find_by(:id => outcome.player_id).name %></td>
+        <td><%= if outcome.result
+              1 
+            else 
+              0
+            end %></td>
         <td><%= outcome.games %></td>
         <td><%= outcome.points %></td>
         <td><%= outcome.matrix_change %></td>

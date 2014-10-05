@@ -4,6 +4,7 @@
 #
 #  id              :integer          not null, primary key
 #  name            :string(255)
+#  player_num      :integer
 #  matrix          :float
 #  phone           :integer
 #  club_id         :integer

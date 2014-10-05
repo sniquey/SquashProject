@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20141004074103) do
 
   create_table "players", force: true do |t|
     t.string   "name"
+    t.integer  "player_num"
     t.float    "matrix"
     t.integer  "phone"
     t.integer  "club_id"

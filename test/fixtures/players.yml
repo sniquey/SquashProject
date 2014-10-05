@@ -4,6 +4,7 @@
 #
 #  id              :integer          not null, primary key
 #  name            :string(255)
+#  player_num      :integer
 #  matrix          :float
 #  phone           :integer
 #  club_id         :integer
@@ -21,7 +22,7 @@ one:
   matrix: 1.5
   email: MyString
   phone: 1
-  photo: MyText
+  avatar: MyText
   club_id: 1
 
 two:
@@ -29,5 +30,5 @@ two:
   matrix: 1.5
   email: MyString
   phone: 1
-  photo: MyText
+  avatar: MyText
   club_id: 1

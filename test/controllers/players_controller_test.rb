@@ -35,7 +35,7 @@ class PlayersControllerTest < ActionController::TestCase
   end
 
   test "should update player" do
-    patch :update, id: @player, player: { club_id: @player.club_id, email: @player.email, matrix: @player.matrix, name: @player.name, phone: @player.phone, photo: @player.photo }
+    patch :update, id: @player, player: { club_id: @player.club_id, email: @player.email, matrix: @player.matrix, name: @player.name, phone: @player.phone, avatar: @player.avatar }
     assert_redirected_to player_path(assigns(:player))
   end
 
