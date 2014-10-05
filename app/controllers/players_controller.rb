@@ -1,16 +1,23 @@
 class PlayersController < ApplicationController
   # before_action :set_player, only: [:show, :edit, :update, :destroy]
 
+  def history
+    @player = @current_player
+    @outcomes = Outcome.where(player_id: @player.id)
+#     Player.where(outcome: outcome)
+# Outcome.joins(:player).where(player: { outcome: outcome })
+  end
+
   def create
-    @player = Player.new player_params
-    if @player.save
-      # Here the user is valid
+  @player = Player.find player_params[:id]
+  if @player
+      @player.update player_params
       redirect_to root_path
     else
-      # Here the user is invalid
       render :new
     end
   end
+
   # GET /players
   # GET /players.json
   def index
@@ -22,6 +29,7 @@ class PlayersController < ApplicationController
   def show
     @player = Player.find params[:id]
   end
+
 
   # GET /players/new
   def new
@@ -54,7 +62,7 @@ class PlayersController < ApplicationController
   def update
     @player = @current_player
     @player.update player_params
-    redirect_to player
+    redirect_to player_path
     # respond_to do |format|
     #   if @player.update(player_params)
     #     format.html { redirect_to @player, notice: 'Player was successfully updated.' }
@@ -84,6 +92,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name, :matrix, :email, :phone, :avatar, :club_id, :password, :password_confirmation)
+      params.require(:player).permit(:name, :avatar, :id, :password, :password_confirmation)
     end
 end

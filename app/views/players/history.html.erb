@@ -1,0 +1,43 @@
+<h1>Listing outcomes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Result</th>
+      <th>Games</th>
+      <th>Points</th>
+      <th>Matrix change</th>
+      <th>Matrix</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= @outcomes.all %>
+ 
+    <% if @outcomes %>
+    <% @outcomes.each do |outcome| %>
+      <tr>
+        <td><%= Player.find_by(:id => outcome.player_id).name %></td>
+        <td><%= if outcome.result
+              1 
+            else 
+              0
+            end %></td>
+        <td><%= outcome.games %></td>
+        <td><%= outcome.points %></td>
+        <td><%= outcome.matrix_change %></td>
+        <td><%= outcome.matrix %></td>
+        <td><%= link_to 'Show', outcome %></td>
+        <td><%= link_to 'Edit', edit_outcome_path(outcome) %></td>
+        <td><%= link_to 'Destroy', outcome, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Outcome', new_outcome_path %>

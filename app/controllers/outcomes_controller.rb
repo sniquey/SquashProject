@@ -12,6 +12,11 @@ class OutcomesController < ApplicationController
   def show
   end
 
+  def showall
+    @player = @current_player
+    @outcomes = Outcome.where(:player_id => @player.id)
+  end
+
   # GET /outcomes/new
   def new
     @outcome = Outcome.new

@@ -23,5 +23,6 @@ class Player < ActiveRecord::Base
 	has_many :outcomes, :through => :matches
 
 	validates :name, :presence => true, :uniqueness => false, :length => {:minimum => 2}
-	validates :email, :presence => true, :uniqueness => false, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9\.-]+\.[A-Za-z]+\Z/ }
+	validates :id, :presence => true, :uniqueness => true, :length => {:minimum => 2}
+	validates :email, :presence => true, :uniqueness => true, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9\.-]+\.[A-Za-z]+\Z/ }
 end
