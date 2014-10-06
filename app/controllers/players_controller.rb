@@ -1,12 +1,6 @@
 class PlayersController < ApplicationController
   # before_action :set_player, only: [:show, :edit, :update, :destroy]
 
-  def history
-    @player = @current_player
-    @outcomes = Outcome.where(player_id: @player.id)
-#     Player.where(outcome: outcome)
-# Outcome.joins(:player).where(player: { outcome: outcome })
-  end
 
   def create
   @player = Player.find player_params[:id]

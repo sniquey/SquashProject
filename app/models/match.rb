@@ -11,7 +11,6 @@
 #
 
 class Match < ActiveRecord::Base
-  belongs_to :player_one, :class_name => "Player"
-  belongs_to :player_two, :class_name => "Player"
-  has_many :outcomes
+  belongs_to :winner_id, :class_name => "Player"
+  belongs_to :loser_id, :class_name => "Player"
 end

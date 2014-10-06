@@ -14,24 +14,19 @@
   </thead>
 
   <tbody>
-    <%= @outcomes.all %>
+    <%= @matches.all %>
  
-    <% if @outcomes %>
-    <% @outcomes.each do |outcome| %>
+    <% if @matches %>
+    <% @matches.each do |match| %>
       <tr>
-        <td><%= Player.find_by(:id => outcome.player_id).name %></td>
-        <td><%= if outcome.result
-              1 
-            else 
-              0
-            end %></td>
-        <td><%= outcome.games %></td>
-        <td><%= outcome.points %></td>
-        <td><%= outcome.matrix_change %></td>
-        <td><%= outcome.matrix %></td>
+        <td><%= Player.find_by(:id => match.winner_id).name %></td>
+        <td><%= match.winner_games %></td>
+        <td><%= match.winner_points %></td>
+        <td><%= match.winner_matrix_change %></td>
+        <td><%= match.winner_before_matrix %></td>
         <td><%= link_to 'Show', outcome %></td>
-        <td><%= link_to 'Edit', edit_outcome_path(outcome) %></td>
-        <td><%= link_to 'Destroy', outcome, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_match_path(match) %></td>
+        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
     <% end %>
@@ -40,4 +35,4 @@
 
 <br>
 
-<%= link_to 'New Outcome', new_outcome_path %>
+<%= link_to 'New Match', new_match_path %>

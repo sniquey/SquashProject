@@ -7,6 +7,11 @@ class MatchesController < ApplicationController
     @matches = Match.all
   end
 
+  def showall
+    @player = @current_player
+    @matches = Match.find_by(:win_id => @player.id)
+  end
+
   # GET /matches/1
   # GET /matches/1.json
   def show
@@ -69,6 +74,7 @@ class MatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_params
-      params.require(:match).permit(:player_one_id, :player_two_id)
+      params.require(:match).permit(:winner_id, :loser_id, :date, :winner_games, :loser_games, :winner_before_matrix, :loser_before_matrix, :winner_matrix_change, :loser_matrix_change, :winner_points, :loser_points)
+
     end
 end

@@ -42,21 +42,17 @@ ActiveRecord::Schema.define(version: 20141004074103) do
   end
 
   create_table "matches", force: true do |t|
-    t.integer  "player_one_id"
-    t.integer  "player_two_id"
+    t.integer  "winner_id"
+    t.integer  "loser_id"
     t.date     "date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "outcomes", force: true do |t|
-    t.integer  "player_id"
-    t.integer  "match_id"
-    t.boolean  "result"
-    t.integer  "games"
-    t.integer  "points"
-    t.float    "matrix_change"
-    t.float    "matrix"
+    t.integer  "winner_games"
+    t.integer  "winner_points"
+    t.float    "winner_before_matrix"
+    t.float    "winner_matrix_change"
+    t.integer  "loser_games"
+    t.integer  "loser_points"
+    t.float    "loser_before_matrix"
+    t.float    "loser_matrix_change"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

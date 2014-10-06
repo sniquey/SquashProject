@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root :to => 'pages#home'
 
-  get '/outcomes/showall' => "outcomes#showall"
+  get '/matches/showall' => "matches#showall"
 
   get '/players/history' => "players#history"
 
@@ -21,8 +21,6 @@ Rails.application.routes.draw do
   resources :matches
 
   resources :teams
-
-  resources :outcomes
 
   resources :players
 

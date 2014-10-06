@@ -1,6 +1,5 @@
 Player.destroy_all
 Match.destroy_all
-Outcome.destroy_all
 Team.destroy_all
 Division.destroy_all
 Competition.destroy_all
@@ -26,21 +25,20 @@ comp1 = Competition.create(:name => "Spring North 2014")
 comp2 = Competition.create(:name => "Spring South 2014")
 comp3 = Competition.create(:name => "Spring West 2014")
 
-m1 = Match.create(:player_one_id => 22646, :player_two_id => 34778, :date => Date.parse("12/12/2013"))
-m2 = Match.create(:player_one_id => 34778, :player_two_id => 15578, :date => Date.parse("11/12/2013"))
-m3 = Match.create(:player_one_id => 9380, :player_two_id => 22646, :date => Date.parse("10/12/2013"))
+m1 = Match.create(:winner_id => 22646, :loser_id => 34778, :date => Date.parse("12/12/2013"), :winner_games => 3, :winner_points => 32, :winner_before_matrix => 250, :winner_matrix_change => 2, :loser_games => 2, :loser_points => 20,  :loser_before_matrix => 260, :loser_matrix_change => -2)
+m2 = Match.create(:winner_id => 34778, :loser_id => 15578, :date => Date.parse("12/12/2013"), :winner_games => 3, :winner_points => 32, :winner_before_matrix => 250, :winner_matrix_change => 2, :loser_games => 2, :loser_points => 20,  :loser_before_matrix => 260, :loser_matrix_change => -2)
+m2 = Match.create(:winner_id => 9380, :loser_id => 22646, :date => Date.parse("12/12/2013"), :winner_games => 3, :winner_points => 32, :winner_before_matrix => 250, :winner_matrix_change => 2, :loser_games => 2, :loser_points => 20,  :loser_before_matrix => 260, :loser_matrix_change => -2)
 
-o1 = Outcome.create(:match_id => 11, :player_id => 22646, :result => true, :games => 3, :points => 32, :matrix_change => 3, :matrix => 250)
-o1 = Outcome.create(:match_id => 11, :player_id => 34778, :result => false, :games => 2, :points => 32, :matrix_change => -3, :matrix => 248)
-o1 = Outcome.create(:match_id => 9, :player_id => 15578, :result => true, :games => 3, :points => 40, :matrix_change => 3, :matrix => 280)
 
-# c1.players << p1 << p2 << p3
+
+# m1.winner = p1
+# m1.loser = p2
+# m2.winner = p3
+# m2.loser = p1
+# m3.winner = p4
+# m3.loser = p1
 
 # comp1.divisions << d1 << d2 << d3
-
-
-
-
 
 
 
