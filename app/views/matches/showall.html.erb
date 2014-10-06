@@ -1,1 +1,68 @@
-<%= @matches %>
+<h1>Listing matches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Opponent</th>
+      <th>Date</th>
+      <th>Result</th>
+      <th>Games</th>
+      <th>Points</th>
+      <th></th>
+      <th colspan="7"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  	<% @matches.each do |match| %>
+      <tr> 
+      	
+        <td> <%= @player.name %></td>
+		<% if @player.wins %>
+        <td><%= match.first.loser.name %></td>		
+        <td><%= match.first.date %></td>
+        <td>1</td>
+        <td><table>
+        		<tr>
+        			<td><%= match.first.winner_games %>: </td>
+        			<td><%= match.first.loser_games %></td>
+				</tr>
+        	</table>
+    	</td>
+    	<td><table>
+        		<tr>
+        			<td><%= match.first.winner_points %>: </td>
+        			<td><%= match.first.loser_points %></td>
+				</tr>
+        	</table>
+    	</td>
+        <td><%= link_to 'Edit', edit_match_path(match) %></td>
+        <% else %>
+        <td><%= match.first.winner.name %></td>
+        <td><%= match.first.date %></td>
+        <td>0</td>
+		<td><table>
+        		<tr>
+        			<td><%= match.first.loser_games %>: </td>
+        			<td><%= match.first.winner_games %></td>
+				</tr>
+        	</table>
+    	</td>
+    	<td><table>
+        		<tr>
+        			<td><%= match.first.loser_points %>: </td>
+        			<td><%= match.first.winner_points %></td>
+				</tr>
+        	</table>
+    	</td>
+        <td><%= link_to 'Edit', edit_match_path(match) %></td>
+		<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Match', new_match_path %>

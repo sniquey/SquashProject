@@ -2,12 +2,12 @@
 
 <p>
   <strong>Player one:</strong>
-  <%= @match.player_one.name %>
+  <%= @match.winner.name %>
 </p>
 
 <p>
   <strong>Player two:</strong>
-  <%= @match.player_two.name %>
+  <%= @match.loser.name %>
 </p>
 
 <%= link_to 'Edit', edit_match_path(@match) %> |
