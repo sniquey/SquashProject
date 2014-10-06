@@ -10,7 +10,10 @@ class ClubsController < ApplicationController
   # GET /clubs/1
   # GET /clubs/1.json
   def show
+    @club = Club.find(params[:id])
+    @result = Geocoder.search(@club.location).first
   end
+
 
   # GET /clubs/new
   def new
@@ -69,6 +72,6 @@ class ClubsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def club_params
-      params.require(:club).permit(:name, :location, :manager)
+      params.require(:club).permit(:name, :location, :manager, :id)
     end
 end

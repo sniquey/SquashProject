@@ -8,7 +8,14 @@
 <p>
   <strong>Location:</strong>
   <%= @club.location %>
-</p>
+  	<p>
+        <iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAAiCRdJuc3KbZmfKzLhPkm4DAoG5-7lcA&q=<%= @result.latitude %>,<%= @result.longitude %>">
+</iframe>
+	</p>
 
 <p>
   <strong>Manager:</strong>

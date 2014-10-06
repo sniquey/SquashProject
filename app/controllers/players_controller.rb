@@ -3,10 +3,11 @@ class PlayersController < ApplicationController
 
   def match_history
       @player = Player.find params[:id]
-      @matches = []
-      @matches_won = Match.where(:winner_id => @player.id)
-      @matches_lost = Match.where(:loser_id => @player.id)
-      @matches << @matches_won << @matches_lost
+      # @matches = []
+      # @matches_won = Match.where(:winner_id => @player.id)
+      # @matches_lost = Match.where(:loser_id => @player.id)
+      # @matches << @matches_won << @matches_lost
+      @matches = Match.where('winner_id = ? OR loser_id = ?', @player.id, @player.id)
   end
 
   def create
@@ -29,6 +30,7 @@ class PlayersController < ApplicationController
   # GET /players/1.json
   def show
     @player = Player.find params[:id]
+    @clubs = Club.all
   end
 
 

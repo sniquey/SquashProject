@@ -17,7 +17,7 @@
 
 class Player < ActiveRecord::Base
 	has_secure_password :validations => false
-	belongs_to :club
+	belongs_to :club, :class_name => 'Club', :foreign_key => 'club_id'
 	has_and_belongs_to_many :teams
 
  
@@ -25,9 +25,9 @@ class Player < ActiveRecord::Base
 	has_many :wins, :class_name => 'Match', :foreign_key => 'winner_id'
 	has_many :loses, :class_name => 'Match', :foreign_key => 'loser_id'
 
-	# def matches
- #  		Match.where('win_id = ? OR lose_id = ?', self.id, self.id)
-	# end
+	def matches
+  		Match.where('winner_id = ? OR loser_id = ?', self.id, self.id)
+	end
  
 
 	validates :name, :presence => true, :uniqueness => false, :length => {:minimum => 2}

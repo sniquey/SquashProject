@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   get '/players/match_history/:id' => 'players#match_history'
 
-   get '/players/:id' => 'players#show'
+
+  get '/players/:id' => 'players#show'
 
   get '/matches/showall' => "matches#showall"
 

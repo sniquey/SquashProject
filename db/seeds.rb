@@ -6,14 +6,14 @@ Competition.destroy_all
 Club.destroy_all
 
 
-p1 = Player.create(:name => "Spencer Walden", :id => 22646, :matrix => 258.093, :email => "swalden8@gmail.com", :phone => 404565827, :avatar => "https://plus.google.com/u/0/_/focus/photos/private/AIbEiAIAAABDCMjZ3ZmN3PTgFiILdmNhcmRfcGhvdG8qKGNlNjk2OWJiYzIwZjFmNDUwMjdhMGFkMzcyNjc2YTdlZDc1MDdkZmMwAelBB7r719Lzv59jDTYca-VCHXbS?sz=96")
+p1 = Player.create(:name => "Spencer Walden", :id => 22646, :matrix => 258.093, :email => "swalden8@gmail.com", :phone => 404565827, :avatar => "https://plus.google.com/u/0/_/focus/photos/private/AIbEiAIAAABDCMjZ3ZmN3PTgFiILdmNhcmRfcGhvdG8qKGNlNjk2OWJiYzIwZjFmNDUwMjdhMGFkMzcyNjc2YTdlZDc1MDdkZmMwAelBB7r719Lzv59jDTYca-VCHXbS?sz=96", :club_id => 3)
 p2 = Player.create(:name => "Clifton Rushby", :id => 34778, :matrix => 254.78, :email => "cliffy065@yahoo.com.au", :phone => 406760947, :avatar => "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/v/t1.0-1/p160x160/554155_10152370849438626_731758625_n.jpg?oh=c792dce19f07800ee199e5366804580e&oe=549B1466&__gda__=1418654621_1805ca9cb89a499d5521abac48caa587", :club_id => 2)
 p3 = Player.create(:name => "James Willis", :id => 15578, :matrix => 243.52, :email => "james.willis00@gmail.com", :phone => 435885262, :club_id => 1)
 p4 = Player.create(:name => "Robert Penwill", :id => 9380, :matrix => 265.75, :email => "robmeryl@optusnet.com.au", :phone => 408977565, :club_id => 2)
 
-c1 = Club.create(:name => 'Lane Cove Squash')
-c2 = Club.create(:name => 'MAASH')
-c3 = Club.create(:name => 'Willoughby Squash')
+c1 = Club.create(:name => 'Lane Cove Squash', :id => 1, :location => "29 Birdwood Ave, Lane Cove NSW, Australia")
+c2 = Club.create(:name => 'MAASH', :id => 2, :location => "1 Trafalgar Pl, Marsfield NSW 2122, Australia")
+c3 = Club.create(:name => 'Willoughby Squash', :id =>3, :location => "443 Willoughby Rd, Willoughby NSW 2068, Australia")
 
 d1 = Division.create(:number => 1)
 d2 = Division.create(:number => 2)
