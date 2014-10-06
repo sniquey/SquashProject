@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root :to => 'pages#home'
 
+  get '/players/match_history' => "players#match_history"
+
   get '/matches/showall' => "matches#showall"
 
-  get '/players/history' => "players#history"
 
   get '/players/edit' => 'players#edit', :as => :edit_player
   resources :players, :except => [:edit]

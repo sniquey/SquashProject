@@ -1,9 +1,9 @@
 class PlayersController < ApplicationController
-  # before_action :set_player, only: [:show, :edit, :update, :destroy]
+  #before_action :set_player, only: [:show, :edit, :update, :destroy, :match_history]
 
     def match_history
       @player = Player.find params[:id]
-       @matches = []
+      @matches = []
       @matches_won = Match.where(:winner_id => @player.id)
       @matches_lost = Match.where(:loser_id => @player.id)
       @matches << @matches_won << @matches_lost
