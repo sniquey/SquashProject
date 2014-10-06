@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root :to => 'pages#home'
 
-  get '/players/match_history' => "players#match_history"
+  get '/players/match_history/:id' => 'players#match_history'
+
+   get '/players/:id' => 'players#show'
 
   get '/matches/showall' => "matches#showall"
 

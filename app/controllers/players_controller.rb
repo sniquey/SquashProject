@@ -1,16 +1,16 @@
 class PlayersController < ApplicationController
   #before_action :set_player, only: [:show, :edit, :update, :destroy, :match_history]
 
-    def match_history
+  def match_history
       @player = Player.find params[:id]
       @matches = []
       @matches_won = Match.where(:winner_id => @player.id)
       @matches_lost = Match.where(:loser_id => @player.id)
       @matches << @matches_won << @matches_lost
-    end
+  end
 
   def create
-  @player = Player.find player_params[:id]
+  @player = Player.find player_params[:player_id]
   if @player
       @player.update player_params
       redirect_to root_path

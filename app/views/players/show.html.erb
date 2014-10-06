@@ -29,9 +29,9 @@
   <strong>Club:</strong>
   <%= @player.club_id %>
 </p>
-
 <%= link_to 'Match History', '/matches/showall' %>
-<%= link_to 'Match History from PLAYER', players_match_history_path(@player) %>
 
+
+<%= link_to "click here" , {:action => "match_history", :controller => "players" }, :id => @player.id %>
 <%= link_to 'Edit', edit_player_path(@player) %> |
 <%= link_to 'Back', players_path %>
