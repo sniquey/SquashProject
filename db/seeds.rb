@@ -30,7 +30,6 @@ m2 = Match.create(:winner_id => 34778, :loser_id => 15578, :date => Date.parse("
 m2 = Match.create(:winner_id => 9380, :loser_id => 22646, :date => Date.parse("12/12/2013"), :winner_games => 3, :winner_points => 32, :winner_before_matrix => 250, :winner_matrix_change => 2, :loser_games => 2, :loser_points => 20,  :loser_before_matrix => 260, :loser_matrix_change => -2)
 
 
-
 # m1.winner = p1
 # m1.loser = p2
 # m2.winner = p3
