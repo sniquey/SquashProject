@@ -16,9 +16,30 @@
     <%= f.number_field :winner_id %>
   </div>
   <div class="field">
-    <%= f.label :loser_id %><br>
-    <%= f.number_field :loser_id %>
+    <%= f.label :date %><br>
+    <%= f.date_field :date %>
   </div>
+   <div class="field">
+    <%= f.label :winner_games %><br>
+    <%= f.number_field :winner_games %>
+  </div>
+  <div class="field">
+    <%= f.label :loser_games %><br>
+    <%= f.number_field :loser_games %>
+  </div>
+    <div class="field">
+    <%= f.label :winner_points %><br>
+    <%= f.number_field :winner_points %>
+  </div>
+   <div class="field">
+    <%= f.label :loser_points %><br>
+    <%= f.number_field :loser_points %>
+  </div>
+  <div class="field">
+    <%= f.label :loser_before_matrix %><br>
+    <%= f.number_field :loser_points %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

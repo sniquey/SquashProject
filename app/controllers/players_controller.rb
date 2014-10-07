@@ -10,6 +10,10 @@ class PlayersController < ApplicationController
       @matches = Match.where('winner_id = ? OR loser_id = ?', @player.id, @player.id)
   end
 
+  def whatif
+      @player = Player.find params[:id]
+  end
+
   def create
   @player = Player.find player_params[:player_id]
   if @player

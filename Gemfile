@@ -29,6 +29,8 @@ gem 'spring',        group: :development
 gem 'haml'
 gem 'bcrypt'
 
+gem 'nokogiri'
+gem 'mechanize'
 
 group :development do
   gem 'pry-rails'

@@ -29,6 +29,9 @@
   <strong>Club:</strong>
   <%= @player.club.name %>
 </p>
+
+<%= link_to 'What if?', {:action => "whatif", :controller => "players" }, :id => @player.id %>
+
 <%= link_to 'Match History', '/matches/showall' %>
 
 
