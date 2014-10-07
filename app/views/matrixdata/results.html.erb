@@ -1,3 +1,24 @@
+<table>
 <%= @trs.each do |tr| %>
-	 <%= tr.text %>
+
+<tr>
+	<td><%= tr.css('td')[0].text %> </td>
+	<td><%= tr.css('td')[1].text %> </td>
+	<td><%= tr.css('td')[2].text %> </td>
+	<td><%= tr.css('td')[3].text %> </td>
+	<td><%= tr.css('td')[4].text %> </td>
+	<td><%= tr.css('td')[5].text %> </td>
+	<td><%= tr.css('td')[6].text %> </td>
+	<td><%= tr.css('td')[7].text %> </td>
+	<td><%= tr.css('td')[8].text %> </td>
+	<td><%= tr.css('td')[9].text %> </td>
+	<td><%= tr.css("td a").map { |a| a.get_attribute('href').split('/').last }.uniq.first %> </td>
+
+	<td><%#= tr.css("td a").get_attribute('href') %> </td>
+	<td><%= tr.css('td')[11].text %> </td>
+	<td><%= tr.css('td')[12].text %> </td>
+
+</tr>
 <%end%>
+
+</table>

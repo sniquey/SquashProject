@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get '/results' => 'matrixdata#results'
 
+  get '/findallplayers' => 'matrixdata#findallplayers'
+
   get '/players/match_history/:id' => 'players#match_history'
 
   get '/players/whatif/:id' => 'players#whatif'
