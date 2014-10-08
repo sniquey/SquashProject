@@ -25,12 +25,12 @@ class Match < ActiveRecord::Base
 
 
   def self.retrieve_all(player_id)
-  	@matches = []
-  	@matches_won = Match.where(:winner_id => player_id)
-    @matches_lost = Match.where(:loser_id => player_id)
-    @matches << @matches_won << @matches_lost
-  	#matches = Match.where(":loser_id = ? or :winner_id = ?", player_id, player_id)
-		return matches unless matches.empty?
+  	player = Player.find_by(:id => player_id)
+
+  	# @matches_won = Match.where(:winner_id => player_id)
+   #  @matches_lost = Match.where(:loser_id => player_id)
+   #  @matches << @matches_won << @matches_lost
+  	
 
 		@agent = Player.login unless @agent
 
@@ -42,7 +42,7 @@ class Match < ActiveRecord::Base
 		trs = doc.css('tr')
 
 		trs.each do |tr|
-			match = Match.new
+			match = Match.create
 			match.date = tr.css('td')[0].text
 			match.competition = tr.css('td')[1].text 
 			match.division = tr.css('td')[2].text
@@ -63,11 +63,11 @@ class Match < ActiveRecord::Base
 				match.loser_points = tr.css('td')[6].text.split('-').first
 				match.loser_matrix_change = tr.css('td')[7].text
 			end
+			match.save
+			player.matches << match
 		end			
-
-		match.save
 	
-		match
+		player.matches
   end
 end
 
