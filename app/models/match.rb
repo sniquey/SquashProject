@@ -59,12 +59,11 @@ class Match < ActiveRecord::Base
 				match.loser_points = tr.css('td')[6].text.split('-').first
 				match.loser_matrix_change = tr.css('td')[7].text
 			end
-			
+		end			
 
 		match.save
 	
 		match
-
   end
 end
 
