@@ -1,10 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<p> 
+<div class="heading">
   <%= @club.name %>
+</div>
 </p>
 
+<div class="map">
 <p>
   <strong>Location:</strong>
   <%= @club.location %>
@@ -16,11 +18,8 @@
   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAAiCRdJuc3KbZmfKzLhPkm4DAoG5-7lcA&q=<%= @result.latitude %>,<%= @result.longitude %>">
 </iframe>
 	</p>
+</div>
 
-<p>
-  <strong>Manager:</strong>
-  <%= @club.manager %>
-</p>
-
-<%= link_to 'Edit', edit_club_path(@club) %> |
-<%= link_to 'Back', clubs_path %>
+  <div class="fb-like-box" data-href="<%= @club.facebook %>" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true">
+    
+  </div>

@@ -1,10 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<div class="playerdiv">
+<p class="heading">
   <%= @player.name %>
 </p>
 
+<p class="avatarimg">
+  <%= image_tag @player.avatar %>
+</p>
+</div>
+<div class="playerstats">
 <p>
   <strong>Matrix:</strong>
   <%= @player.matrix %>
@@ -12,7 +17,7 @@
 
 <p>
   <strong>Email:</strong>
-  <%= @player.email %>
+  <%= link_to @player.email %>
 </p>
 
 <p>
@@ -20,15 +25,51 @@
   <%= @player.phone %>
 </p>
 
-<p>
-  <strong>Avatar:</strong>
-  <%= image_tag @player.avatar %>
-</p>
+
 
 <p>
   <strong>Club:</strong>
-  <%= @player.club.name %>
+  <%= link_to @player.club.name %>
 </p>
+
+<% if @player.player_num.nil? %>
+<p>You have not entered a Matrix Goal. <%= link_to "Click here", edit_player_path(@current_player)%> to do so.</p>
+<% else %>
+<p>
+  <strong>Matrix Goal:</strong>
+  <%= @player.player_num %>
+</p>
+
+<p>
+  <strong>Points to get to goal:</strong>
+  <%= @player.player_num.to_i - @player.matrix.to_i %>
+</p>
+
+<% end %>
+</div>
+<div class="winplanner">
+  <h3> Plan your next win! </h3>
+
+<%= form_tag :action => 'whatif', :controller => "players", :id => @player.id, :method => :post do %>
+
+  <div class="field">
+    <p class="whatif"> Winner <p>
+    <input type="text" name="winner" value="<%= @current_player.name %>" placeholder="<%= @current_player.name %>" class="whatif_field">
+  </div>
+  <div class="field">
+  <p class="whatif"> Loser <p>
+    <input type="text" name="loser" class="whatif_field">
+  </div>
+
+<%= submit_tag 'Get future matrix!', :class=> "futurematrixsubmit" %>
+<% end %>
+
+<%= yield %>
+
+</div>
+
+<div>
+  <br>
 
 <%= link_to 'What if?', {:action => "whatif", :controller => "players" }, :id => @player.id %>
 
@@ -37,4 +78,9 @@
 
 <%= link_to "click here" , {:action => "match_history", :controller => "players" }, :id => @player.id %>
 <%= link_to 'Edit', edit_player_path(@player) %> |
-<%= link_to 'Back', players_path %>
+<%= link_to 'See All Players', players_path %>
+
+<%= form_tag '/results', :method => :get do %>
+<%= submit_tag 'Get Data', :class => "btn btn-default" %>
+<% end %>
+</div>

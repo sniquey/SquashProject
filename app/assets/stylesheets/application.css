@@ -31,3 +31,67 @@ a.dropdown-toggle img {
 	font-size: 50px;
 
 }
+
+.futurematrixsubmit {
+	width: 156px;
+	height: 30px;
+}
+
+.whatif {
+	font-size: 20px;
+	font-weight: bold;
+
+}
+
+.heading {
+	font-size: 50px;
+	margin-bottom: 30px;
+}
+
+.avatarimg {
+	width: 200px;
+	height: 200px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+
+.playerdiv {
+	position: relative;
+	display: inline-block;
+}
+.avatarimg img {
+  width: 200px;
+ height: auto;
+  overflow: hidden;
+}
+
+
+
+.playerstats {
+	position: relative;
+	display: inline-block;
+	margin-left: -200px;
+	top: 50px;
+}
+
+.winplanner {
+	position: relative;
+	display: inline-block;
+	text-align: right;
+	left: 300px;
+	top: 50px;
+}
+
+.map {
+	position: relative;
+	display: inline-block;
+}
+
+.fb-like-box {
+	position: relative;
+	display: inline;
+	top: -180px;
+	margin-left: 20px;
+}

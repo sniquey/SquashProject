@@ -25,7 +25,11 @@ class Match < ActiveRecord::Base
 
 
   def self.retrieve_all(player_id)
-  	matches = Match.where(":loser_id = ? or :winner_id = ?", player_id, player_id)
+  	@matches = []
+  	@matches_won = Match.where(:winner_id => player_id)
+    @matches_lost = Match.where(:loser_id => player_id)
+    @matches << @matches_won << @matches_lost
+  	#matches = Match.where(":loser_id = ? or :winner_id = ?", player_id, player_id)
 		return matches unless matches.empty?
 
 		@agent = Player.login unless @agent

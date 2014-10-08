@@ -36,6 +36,23 @@ class PlayersController < ApplicationController
     @clubs = Club.all
   end
 
+  def whatif
+    @player = Player.find params[:id]
+    @winner = params[:winner].to_s
+    @loser = params[:loser].to_s
+    @winner_player = Player.find_by[:name => @winner]
+    @loser_player = Player.find_by[:name => @loser]
+    # if @winner_player.exists? && @loser_player.exists?
+      @diff = @winner_player.matrix - @loser_player.matrix
+    # else
+    #   render "Error. You must enter valid player names."
+    # end
+    # redirect_to player
+  end
+
+  def whatif_results
+  end
+
 
   # GET /players/new
   def new

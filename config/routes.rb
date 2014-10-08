@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root :to => 'pages#home'
 
+   get '/players/edit/:id' => 'players#edit', :as => :edit_player
+
   get '/results' => 'matrixdata#results'
+
+  # get '/whatif_results/:id' => 'players#whatif'
 
   get '/findallplayers' => 'matrixdata#findallplayers'
 
@@ -9,11 +13,8 @@ Rails.application.routes.draw do
 
   get '/players/whatif/:id' => 'players#whatif'
 
-  get '/players/:id' => 'players#show'
-
   get '/matches/showall' => "matches#showall"
 
-  get '/players/edit' => 'players#edit', :as => :edit_player
   resources :players, :except => [:edit]
 
   get '/login' => 'session#new'

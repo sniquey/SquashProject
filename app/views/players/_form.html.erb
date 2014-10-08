@@ -18,10 +18,20 @@
     <%= f.text_field :name %>
   </div>
 
+  <% if @current_player %>
+   <div class="field">
+    <%= f.label :Matrix_Goal %><br>
+    <%= f.text_field :player_num %>
+  </div>
+
+ <% else %>
+
   <div class="field">
     <%= f.label :id %><br>
     <%= f.text_field :id %>
   </div>
+
+  <% end %>
   
   <div class="field">
     <%= f.label :password %><br>

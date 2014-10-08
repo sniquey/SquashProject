@@ -1,4 +1,6 @@
-<table>
+
+<%= @x %>
+<table class = "table table-striped">
 <%= @trs.each do |tr| %>
 
 <tr>
@@ -15,8 +17,7 @@
 	<td><%= tr.css("td a").map { |a| a.get_attribute('href').split('/').last }.uniq.first %> </td>
 
 	<td><%#= tr.css("td a").get_attribute('href') %> </td>
-	<td><%= tr.css('td')[11].text %> </td>
-	<td><%= tr.css('td')[12].text %> </td>
+
 
 </tr>
 <%end%>

@@ -7,7 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class = "container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -25,8 +34,10 @@
         <li><%= link_to('Teams', teams_path) %></li>
         <li><%= link_to('Divisions', divisions_path) %></li>
         <li><%= link_to('Competitions', competitions_path) %></li>
-        <li><%= link_to('Matches', matches_path) %></li>
-        <li class="dropdown">
+        <li><%= link_to('Matches', '/results') %></li>
+    </ul>
+<ul class="nav navbar-right navbar-nav">
+    <li class="dropdown">
          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag @current_player.avatar %> <span class="caret"></span></a>
          <ul class="dropdown-menu" role="menu">
           <li><a href="#"><%= link_to(@current_player.name, @current_player) %></a></li>
@@ -36,8 +47,7 @@
           <li><a href="#"><%= link_to('Sign out', login_path, :method => :delete, :data => {:confirm => 'Are you sure?'}) %></a></li>
         </ul>
       </li>
-    </ul>
-
+  </ul>
     <% else %>
     <%= form_tag '/login', :class => "navbar-form navbar-right", :role => "form" do %>
       <div class="form-group">
@@ -49,6 +59,7 @@
        <%= submit_tag 'Sign in', :class => "btn btn-success" %>
        <% end %>
 <% end %>
+</div>
   </div><!--/.navbar-collapse -->
 </div>
 
@@ -56,53 +67,8 @@
    <% if @current_player.present? %>
     <%= yield %>
    <% else %>
-   <div class="titledescription">
-   <h1>Sydney Squash Player Site</h1>
-    <p>Site for squash players to see their stats, ranking, player history and project future progress</p>
-    </div>
-    <div class="signup">
-    <%= link_to('Signup', new_player_path) %>
-    </div>
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src="/assets/bushel.jpg" alt="...">
-      <div class="carousel-caption">
-        ...
-      </div>
-    </div>
-    <div class="item">
-      <img src="/assets/nicoldavid.jpg" alt="...">
-      <div class="carousel-caption">
-        ...
-      </div>
-    </div>
-    <div class="item">
-      <img src="/assets/ramyashor.jpg" alt="...">
-      <div class="carousel-caption">
-        ...
-      </div>
-    </div>
-  </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-</div>
-  <% end %>
-
+   <%= yield %>
+    <% end %>
 </div>
 </body>
 </html>

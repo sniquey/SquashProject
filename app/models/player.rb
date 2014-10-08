@@ -31,9 +31,9 @@ class Player < ActiveRecord::Base
 	validates :id, :presence => true, :uniqueness => true, :length => {:minimum => 2}
 	validates :email, :presence => true, :uniqueness => true#, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9\.-]+\.[A-Za-z]+\Z/ }
 
-	# def matches
- #  		Match.where('winner_id = ? OR loser_id = ?', self.id, self.id)
-	# end
+	def matches
+  		Match.where('winner_id = ? OR loser_id = ?', self.id, self.id)
+	end
 
 	# def print_name
 	# 	self.name || self.id
@@ -55,27 +55,26 @@ class Player < ActiveRecord::Base
 			puts "Fetching player from #{url}"
 			page = @agent.get(url)
 		rescue
-			while counter < 3 do
-			url = "https://www.squashmatrix.com/Home/Player/#{squashmatrix_id}"
-		# 	return Player.new :id => squashmatrix_id
-			counter += 1
-		end
+			# while counter < 3 do
+			# url = "https://www.squashmatrix.com/Home/Player/#{squashmatrix_id}"
+			return Player.new :id => squashmatrix_id
+		# 	counter += 1
+		# end
 		end
 		doc = page.parser
 		player = Player.new
 		player.name = doc.css('h1').first.text
 		player.id = doc.css('table tr td')[1].text
 		player.matrix = doc.css('table tr td')[3].text.to_f
-		#player.club_id = doc.css('table ul li a').map {|a| a.get_attribute('href')}.uniq.first.split('/').last
-		# if club_data.any?
-		# 	club_id = club_data.first.split('/').try(:last)
-		# 	player.club_id = club_id
-		# 	Club.retrieve(club_id)
-		# end
+		club_data = doc.css('table ul li a').map {|a| a.get_attribute('href')}.uniq
+		if club_data.any?
+			club_id = club_data.first.split('/').try(:last)
+		 	player.club_id = club_id
+		 	Club.retrieve(club_id)
+		 end
 		player.email = "happy#{ Random.rand }@mondays.com"
 		player.password = "chicken"
 		player.password_confirmation = "chicken"
-		##### insert here to retrieve all matches ####
 		player.save
 		
 		player
@@ -85,9 +84,12 @@ class Player < ActiveRecord::Base
 		puts "Logging in to Squash Matrix"
 		@agent = Mechanize.new
 		page = @agent.get("https://squashmatrix.com/Account/LogOn?UserName=65743&ReturnUrl=%2FHome%2FPlayer%2F65743")
+		#page = @agent.get("https://squashmatrix.com/Account/LogOn?UserName=22464&ReturnUrl=%2FHome%2FPlayer%2F22464")
 		form = @agent.page.forms[1]
 		form["UserName"] = "veronique_eldridge@hotmail.com"
+		#form["UserName"] = "swalden8@gmail.com"
 		form["Password"] = "Chicken007"
+
 		form.submit
 
 		@agent
