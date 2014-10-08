@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get '/players/whatif/:id' => 'players#whatif'
 
-  get '/players/:id' => 'players#show'
+  # get '/players/:id' => 'players#show'
 
   get '/matches/showall' => "matches#showall"
 

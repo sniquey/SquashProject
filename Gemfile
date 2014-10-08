@@ -32,6 +32,9 @@ gem 'bcrypt'
 gem 'nokogiri'
 gem 'mechanize'
 
+gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
+
+
 group :development do
   gem 'pry-rails'
   gem 'pry-debugger'

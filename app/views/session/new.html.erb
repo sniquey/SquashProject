@@ -1,0 +1,9 @@
+
+<%= form_tag '/login' do %>
+	<%= label_tag :playername %>
+	<%= text_field_tag :playername, nil, :autofocus => true, :class => 'crazy' %>
+	<%= label_tag :password %>
+	<%= password_field_tag :password %>
+
+	<%= submit_tag 'Login' %>
+<% end %>

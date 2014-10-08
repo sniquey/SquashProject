@@ -1,8 +1,6 @@
-<%= form_for(@player, builder: FoundationFormBuilder) do |f| %>
-  <%= f.text_field :title, label: "Player", autofocus: 'autofocus' %>
+<%= form_for(@player) do |f| %>
+  
 
-  <%= f.submit "Save" %>    
-<% end %>
   <% if @player.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
@@ -34,6 +32,6 @@
     <%= f.password_field :password_confirmation %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "save" %>
   </div>
 <% end %>

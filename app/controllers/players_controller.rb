@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  #before_action :set_player, only: [:show, :edit, :update, :destroy, :match_history]
+  before_action :set_player, only: [:show, :edit, :update, :destroy, :match_history]
 
   def match_history
       @player = Player.find params[:id]
@@ -8,10 +8,6 @@ class PlayersController < ApplicationController
       # @matches_lost = Match.where(:loser_id => @player.id)
       # @matches << @matches_won << @matches_lost
       @matches = Match.where('winner_id = ? OR loser_id = ?', @player.id, @player.id)
-  end
-
-  def whatif
-      @player = Player.find params[:id]
   end
 
   def create
@@ -99,6 +95,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name, :avatar, :id, :password, :password_confirmation)
+      params.require(:player).permit(:name, :avatar, :id, :club_id, :password, :password_confirmation)
     end
 end

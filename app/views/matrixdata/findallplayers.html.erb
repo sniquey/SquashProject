@@ -1,0 +1,8 @@
+
+<%= @doc.css('h1').first.text %>
+<%= @doc.css('table tr td')[1].text %>
+<%= @doc.css('table tr td')[3].text.to_f %>
+<%= @doc.css('table ul li a').map {|a| a.get_attribute('href')}.uniq.first.split('/').last %>
+				<!-- page = agent.get('view-source:http://www.squashmatrix.com/Home/Player/#{x}#Contact')
+				@doc = page.parser
+				@player.email = @doc.css("div#playerContactDetailsContent").text -->

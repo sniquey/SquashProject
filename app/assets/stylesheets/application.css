@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+
+a.dropdown-toggle img {
+	width: 50px;
+}
+
+.titledescription {
+	position: relative;
+	display: inline-block;
+}
+
+.signup {
+	position: relative;
+	display: inline-block;
+	margin-left: 300px;
+	font-size: 50px;
+
+}
