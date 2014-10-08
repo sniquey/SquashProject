@@ -33,6 +33,10 @@ class Player < ActiveRecord::Base
   		Match.where('winner_id = ? OR loser_id = ?', self.id, self.id)
 	end
 
+	def print_name
+		self.name || self.id
+	end
+
 	# def club
 	# 	Club.find_by(:id=>self.club_id)
 	# end
@@ -44,33 +48,31 @@ class Player < ActiveRecord::Base
 		self.login unless @agent
 
 		url = "https://www.squashmatrix.com/Home/Player/#{squashmatrix_id}"
-		attempts = 0
 		begin
 			puts "Fetching player from #{url}"
 			page = @agent.get(url)
 		rescue
-			url = @agent.page.links.last.href # Try again with the moved to URL.
-			if attempts < 2
-				puts "retrying"
-				attempts += 1
-				retry
-			end
+			return Player.new :id => squashmatrix_id
 		end
 		doc = page.parser
 		player = Player.new
 		player.name = doc.css('h1').first.text
 		player.id = doc.css('table tr td')[1].text
 		player.matrix = doc.css('table tr td')[3].text.to_f
-		player.club_id = doc.css('table ul li a').map {|a| a.get_attribute('href')}.uniq.first.split('/').last
+		club_data = doc.css('table tr td a').map {|a| a.get_attribute('href')}.uniq
+		if club_data.any?
+			club_id = club_data.first.split('/').try(:last)
+			player.club_id = club_id
+			Club.retrieve(club_id)
+		end
 		player.email = "happy#{ Random.rand }@mondays.com"
 		player.password = 'chicken'
 		player.password_confirmation = 'chicken'
 		player.save
-	
+		
 		player
 	end
 
-	private
 	def self.login
 		puts "Logging in to Squash Matrix"
 		@agent = Mechanize.new
@@ -79,5 +81,7 @@ class Player < ActiveRecord::Base
 		form["UserName"] = "veronique_eldridge@hotmail.com"
 		form["Password"] = "Chicken007"
 		form.submit
+
+		@agent
 	end
 end
