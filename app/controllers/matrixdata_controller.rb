@@ -11,16 +11,21 @@ class MatrixdataController < ApplicationController
 		form["UserName"] = "veronique_eldridge@hotmail.com"
 		form["Password"] = "Chicken007"
 		form.submit
-		x = 22000
-			page = agent.get("https://www.squashmatrix.com/Home/Player/#{x}")
+		(22000..22003).each do |x|
+			player = Player.retrieve(x)
+			url = "https://www.squashmatrix.com/Home/Player/#{x}"
+			puts url
+			page = agent.get(url)
 			@doc = page.parser
 			@player = Player.create
 			@player.name = @doc.css('h1').first.text
 			@player.id = @doc.css('table tr td')[1].text
 			@player.matrix = @doc.css('table tr td')[3].text.to_f
-			@player.club_id = @doc.css('table ul li a').map {|a| a.get_attribute('href')}.uniq.first.split('/').last
-			@player.save		
-		redirect_to players_path
+			@player.club = @doc.css('table ul li a').map {|a| a.get_attribute('href')}.uniq.first.split('/').last
+			@player.save
+				
+		end
+		# end
 	end
 
 	def results

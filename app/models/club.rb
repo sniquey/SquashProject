@@ -24,7 +24,7 @@ class Club < ActiveRecord::Base
 		return club unless club.nil?
 
 		@agent = Player.login unless @agent
-
+		puts "about to fetch club"
 		url = "https://www.squashmatrix.com/Home/Club/#{squashmatrix_id}"
 		puts "Fetching club from #{url}"
 		page = @agent.get(url)

@@ -24,7 +24,7 @@ class Match < ActiveRecord::Base
 
 
 
-  def retrieve_all(player_id)
+  def self.retrieve_all(player_id)
   	matches = Match.where(":loser_id = ? or :winner_id = ?", player_id, player_id)
 		return matches unless matches.empty?
 

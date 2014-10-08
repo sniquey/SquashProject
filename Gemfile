@@ -29,11 +29,13 @@ gem 'spring',        group: :development
 gem 'haml'
 gem 'bcrypt'
 
-gem 'nokogiri'
 gem 'mechanize'
+gem 'nokogiri'
+
 
 gem 'twitter-bootstrap-rails'#, :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
 
+# gem "paperclip", "~> 4.2"
 
 group :development do
   gem 'pry-rails'

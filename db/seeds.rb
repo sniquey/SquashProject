@@ -5,7 +5,19 @@ Division.destroy_all
 Competition.destroy_all
 Club.destroy_all
 
-
+# p1 = Player.retrieve(22646)
+# p1 = Player.retrieve(7456)
+# p1 = Player.retrieve(29134)
+# p1 = Player.retrieve(57860)
+# p1 = Player.retrieve(9333)
+# p1 = Player.retrieve(14236)
+# p1 = Player.retrieve(9005)
+# p1 = Player.retrieve(33927)
+# p1 = Player.retrieve(61040)
+# p1 = Player.retrieve(43185)
+# p1 = Player.retrieve(24794)
+# p1 = Player.retrieve(54115)
+# p1 = Player.retrieve(8551)
 p1 = Player.create(:name => "Spencer Walden", :id => 22646, :matrix => 258.093, :email => "swalden8@gmail.com", :phone => 404565827, :avatar => "https://plus.google.com/u/0/_/focus/photos/private/AIbEiAIAAABDCMjZ3ZmN3PTgFiILdmNhcmRfcGhvdG8qKGNlNjk2OWJiYzIwZjFmNDUwMjdhMGFkMzcyNjc2YTdlZDc1MDdkZmMwAelBB7r719Lzv59jDTYca-VCHXbS?sz=96", :club_id => 3, :password_digest => "$2a$10$vTOzTQD1weGepd9VzlxeJeWPiJZk0rCUIsC3pGBvX2zenqBxthr.y")
 p2 = Player.create(:name => "Clifton Rushby", :id => 34778, :matrix => 254.78, :email => "cliffy065@yahoo.com.au", :phone => 406760947, :avatar => "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/v/t1.0-1/p160x160/554155_10152370849438626_731758625_n.jpg?oh=c792dce19f07800ee199e5366804580e&oe=549B1466&__gda__=1418654621_1805ca9cb89a499d5521abac48caa587", :club_id => 2, :password_digest => "$2a$10$vTOzTQD1weGepd9VzlxeJeWPiJZk0rCUIsC3pGBvX2zenqBxthr.y")
 p3 = Player.create(:name => "James Willis", :id => 15578, :matrix => 243.52, :email => "james.willis00@gmail.com", :phone => 435885262, :club_id => 1, :password_digest => "$2a$10$vTOzTQD1weGepd9VzlxeJeWPiJZk0rCUIsC3pGBvX2zenqBxthr.y")

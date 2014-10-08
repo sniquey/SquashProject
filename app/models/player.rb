@@ -14,6 +14,8 @@
 #  password_digest :string(255)
 #  avatar          :text             default("http://top10hm.com/wp-content/uploads/2012/06/Squash-300x200.jpg")
 #
+require 'open-uri'
+require 'mechanize'
 
 class Player < ActiveRecord::Base
 	has_secure_password :validations => false
@@ -27,15 +29,15 @@ class Player < ActiveRecord::Base
 
  	validates :name, :presence => true, :uniqueness => false, :length => {:minimum => 2}
 	validates :id, :presence => true, :uniqueness => true, :length => {:minimum => 2}
-	validates :email, :presence => true, :uniqueness => true, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9\.-]+\.[A-Za-z]+\Z/ }
+	validates :email, :presence => true, :uniqueness => true#, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9\.-]+\.[A-Za-z]+\Z/ }
 
-	def matches
-  		Match.where('winner_id = ? OR loser_id = ?', self.id, self.id)
-	end
+	# def matches
+ #  		Match.where('winner_id = ? OR loser_id = ?', self.id, self.id)
+	# end
 
-	def print_name
-		self.name || self.id
-	end
+	# def print_name
+	# 	self.name || self.id
+	# end
 
 	# def club
 	# 	Club.find_by(:id=>self.club_id)
@@ -47,27 +49,33 @@ class Player < ActiveRecord::Base
 
 		self.login unless @agent
 
-		url = "https://www.squashmatrix.com/Home/Player/#{squashmatrix_id}"
+		url = "http://www.squashmatrix.com/Home/Player/#{squashmatrix_id}"
+		counter = 0
 		begin
 			puts "Fetching player from #{url}"
 			page = @agent.get(url)
 		rescue
-			return Player.new :id => squashmatrix_id
+			while counter < 3 do
+			url = "https://www.squashmatrix.com/Home/Player/#{squashmatrix_id}"
+		# 	return Player.new :id => squashmatrix_id
+			counter += 1
+		end
 		end
 		doc = page.parser
 		player = Player.new
 		player.name = doc.css('h1').first.text
 		player.id = doc.css('table tr td')[1].text
 		player.matrix = doc.css('table tr td')[3].text.to_f
-		club_data = doc.css('table tr td a').map {|a| a.get_attribute('href')}.uniq
-		if club_data.any?
-			club_id = club_data.first.split('/').try(:last)
-			player.club_id = club_id
-			Club.retrieve(club_id)
-		end
+		#player.club_id = doc.css('table ul li a').map {|a| a.get_attribute('href')}.uniq.first.split('/').last
+		# if club_data.any?
+		# 	club_id = club_data.first.split('/').try(:last)
+		# 	player.club_id = club_id
+		# 	Club.retrieve(club_id)
+		# end
 		player.email = "happy#{ Random.rand }@mondays.com"
-		player.password = 'chicken'
-		player.password_confirmation = 'chicken'
+		player.password = "chicken"
+		player.password_confirmation = "chicken"
+		##### insert here to retrieve all matches ####
 		player.save
 		
 		player
