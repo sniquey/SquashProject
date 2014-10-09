@@ -15,44 +15,45 @@
   </thead>
 
   <tbody>
-  	<% @matches.each do |match| %>
+  	<% @player.matches.each do |match| %>
       <tr> 
       	
         <td> <%= @player.name %></td>
 		<% if @player.wins %>
-        <td><%= match.first.loser.name %></td>		
-        <td><%= match.first.date %></td>
+        <td><%= match.loser_id %></td>		
+       <% Player.retrieve(match.loser_id) %>
+        <td><%= match.date %></td>
         <td>1</td>
         <td><table>
         		<tr>
-        			<td><%= match.first.winner_games %>: </td>
-        			<td><%= match.first.loser_games %></td>
+        			<td><%= match.winner_games %>: </td>
+        			<td><%= match.loser_games %></td>
 				</tr>
         	</table>
     	</td>
     	<td><table>
         		<tr>
-        			<td><%= match.first.winner_points %>: </td>
-        			<td><%= match.first.loser_points %></td>
+        			<td><%= match.winner_points %>: </td>
+        			<td><%= match.loser_points %></td>
 				</tr>
         	</table>
     	</td>
         <td><%= link_to 'Edit', edit_match_path(match) %></td>
         <% else %>
-        <td><%= match.first.winner.name %></td>
-        <td><%= match.first.date %></td>
+        <td><%= match.winner.name %></td>
+        <td><%= match.date %></td>
         <td>0</td>
 		<td><table>
         		<tr>
-        			<td><%= match.first.loser_games %>: </td>
-        			<td><%= match.first.winner_games %></td>
+        			<td><%= match.loser_games %>: </td>
+        			<td><%= match.winner_games %></td>
 				</tr>
         	</table>
     	</td>
     	<td><table>
         		<tr>
-        			<td><%= match.first.loser_points %>: </td>
-        			<td><%= match.first.winner_points %></td>
+        			<td><%= match.loser_points %>: </td>
+        			<td><%= match.winner_points %></td>
 				</tr>
         	</table>
     	</td>

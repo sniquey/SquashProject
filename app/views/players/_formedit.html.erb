@@ -33,6 +33,15 @@
     </div>
 
   <% end %>
+
+  <div class="field">
+        <% clubs_array = Club.all.map { |club| [club.name, club.id] } %>
+    <%= f.select(:club_id, options_for_select(clubs_array)) %>
+
+  <%= options_for_select(clubs_array) %>
+</div>
+
+
   
   <div class="field">
     <%= f.label :password %><br>
@@ -43,7 +52,7 @@
     <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation %>
   </div>
-
+  
   <div class="actions">
     <%= f.submit "save" %>
   </div>

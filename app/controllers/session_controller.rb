@@ -10,7 +10,7 @@ class SessionController < ApplicationController
 			session[:player_id] = player.id
 			redirect_to player
 		else
-			redirect_to login_path
+			redirect_to root_path
 		end
 	end
 

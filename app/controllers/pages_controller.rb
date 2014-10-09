@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   def home
   end
 
+
   def matrix_data
 		agent = Mechanize.new
 		page = agent.get("https://squashmatrix.com/Account/LogOn?UserName=65743&ReturnUrl=%2FHome%2FPlayer%2F65743")

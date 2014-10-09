@@ -95,3 +95,14 @@ a.dropdown-toggle img {
 	top: -180px;
 	margin-left: 20px;
 }
+
+table td:nth-child(4) {
+	border-box: box-sizing;
+	height: 50px;
+	width: 50px;
+	overflow: hidden;
+}
+table td:nth-child(4) img {
+	height: 50px;
+	overflow: hidden;
+}

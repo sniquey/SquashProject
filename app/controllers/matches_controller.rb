@@ -8,12 +8,12 @@ class MatchesController < ApplicationController
   end
 
   def showall
-    @matches = []
+    # @matches = []
     @player = @current_player
-    @matches_won = Match.where(:winner_id => @player.id)
-    @matches_lost = Match.where(:loser_id => @player.id)
-    @matches << @matches_won << @matches_lost
-    #@matches = Match.where(":loser_id = ? or :winner_id = ?", @player.id, @player.id)
+    # @matches_won = Match.where(:winner_id => @player.id)
+    # @matches_lost = Match.where(:loser_id => @player.id)
+    # @matches << @matches_won << @matches_lost
+    @matches = Match.where(":loser_id = ? or :winner_id = ?", @player.id, @player.id)
   end
 
   # GET /matches/1

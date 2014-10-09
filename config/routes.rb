@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root :to => 'pages#home'
 
-   get '/players/edit/:id' => 'players#edit', :as => :edit_player
+  get '/error' => 'pages#error'
+
+  post '/players' => 'players#verify'
+
+  get '/players/edit/:id' => 'players#edit', :as => :edit_player
 
   get '/results' => 'matrixdata#results'
 

@@ -26,11 +26,19 @@
 </p>
 
 
+<% if Club.find_by(:id => @player.club_id).nil? %>
+<p>
+  <strong>Club:</strong>
+  No club. You can <%= link_to 'edit', edit_player_path(@current_player) %> your player page to add a club.
+</p>
 
+<% else %>
 <p>
   <strong>Club:</strong>
   <%= link_to @player.club.name %>
 </p>
+
+<% end %>
 
 <% if @player.player_num.nil? %>
 <p>You have not entered a Matrix Goal. <%= link_to "Click here", edit_player_path(@current_player)%> to do so.</p>
@@ -50,19 +58,24 @@
 <div class="winplanner">
   <h3> Plan your next win! </h3>
 
-<%= form_tag :action => 'whatif', :controller => "players", :id => @player.id, :method => :post do %>
+<%= form_tag do %>
+  Form contents
+<%= submit_tag %>
+<% end %>
 
-  <div class="field">
+<%#= form_tag :action => 'whatif', :controller => "players", :id => @player.id, :method => :post do %>
+
+  <!-- <div class="field">
     <p class="whatif"> Winner <p>
-    <input type="text" name="winner" value="<%= @current_player.name %>" placeholder="<%= @current_player.name %>" class="whatif_field">
+    <input type="text" name="winner" value="<%#= @current_player.name %>" placeholder="<%#= @current_player.name %>" class="whatif_field">
   </div>
   <div class="field">
   <p class="whatif"> Loser <p>
     <input type="text" name="loser" class="whatif_field">
-  </div>
+  </div> -->
 
-<%= submit_tag 'Get future matrix!', :class=> "futurematrixsubmit" %>
-<% end %>
+<%#= submit_tag 'Get future matrix!', :class=> "futurematrixsubmit" %>
+<%# end %>
 
 <%= yield %>
 

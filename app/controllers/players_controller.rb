@@ -2,7 +2,7 @@ require 'open-uri'
 require 'mechanize'
 
 class PlayersController < ApplicationController
-  before_action :set_player, only: [:show, :edit, :update, :destroy, :match_history]
+  before_action :set_player, only: [:show, :edit, :update, :destroy, :verify]
 
   def match_history
       @player = Player.find params[:id]
@@ -10,7 +10,20 @@ class PlayersController < ApplicationController
       # @matches_won = Match.where(:winner_id => @player.id)
       # @matches_lost = Match.where(:loser_id => @player.id)
       # @matches << @matches_won << @matches_lost
-      @matches = Match.where('winner_id = ? OR loser_id = ?', @player.id, @player.id)
+      @player.matches = Match.where('winner_id = ? OR loser_id = ?', @player.id, @player.id)
+  end
+
+  def verify
+    @player.exists?
+    redirect_to root_path
+  else
+    redirect_to '/error'
+    # if @player.exists?
+    #   p "Hi"
+    # else
+    #   p "no"
+    # end
+    
   end
 
   def create
@@ -115,6 +128,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name, :avatar, :id, :club_id, :password, :password_confirmation)
+      params.require(:player).permit(:name, :avatar, :id, :player_num, :club_id, :password, :password_confirmation)
     end
 end

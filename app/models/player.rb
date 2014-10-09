@@ -75,8 +75,10 @@ class Player < ActiveRecord::Base
 		player.email = "happy#{ Random.rand }@mondays.com"
 		player.password = "chicken"
 		player.password_confirmation = "chicken"
-		player.save
 		
+		Match.retrieve_all(player_id)
+
+		player.save
 		player
 	end
 

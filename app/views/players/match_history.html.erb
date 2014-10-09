@@ -10,18 +10,23 @@
       <th>Date</th>
       <th>Result</th>
       <th>Games</th>
-      <th>Points</th>
+    <th>Points</th>
       <th></th>
       <th colspan="7"></th>
     </tr>
   </thead>
 
   <tbody>
-  	 <% @matches.each do |match| %>
+  	 <% @player.matches.each do |match| %>
         <% if match.winner_id == @player.id %>
+        <% @opponent = nil unless @opponent = Player.find_by(:id => match.loser_id) %>
           <tr> 
             <td> <%= @player.name %></td>
-            <td><%= match.loser.name %></td>		
+            <%# if @opponent? %>
+            <td><%#= @opponent.name %></td>		
+            <%# else %>
+            <td><%= loser_id %> </td>
+            <%# end %>
             <td><%= match.date %></td>
             <td>1</td>
             <td>
@@ -43,10 +48,16 @@
           <td><%= link_to 'Edit', edit_match_path(match) %></td>
         </tr>
       <% elsif match.loser_id == @player.id %>
+      <% @opponent = nil unless @opponent = Player.find_by(:id => match.winner_id) %>
         <tr> 
           <td><%= @player.name %></td>
-          <td><%= match.winner.name %></td>    
+           <%# if @opponent? %>
+          <td><%#= @opponent.name %></td> 
+            <%# else %>
+            <td><%= winner_id %> </td>
+            <%# end %>
           <td><%= match.date %></td>
+
           <td>0</td>
           <td>
             <table>
@@ -74,4 +85,3 @@
 
 <br>
 
-<%= link_to 'New Match', new_match_path %>
