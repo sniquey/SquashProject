@@ -19,13 +19,13 @@ Rails.application.routes.draw do
 
   get '/matches/showall' => "matches#showall"
 
+  resources :password_resets, only: [:new, :create, :edit, :update]
+
   resources :players, :except => [:edit]
 
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
-
-  resources :password_resets, only: [:new, :create]
 
   resources :competitions
 
