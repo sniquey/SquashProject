@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get '/findallplayers' => 'matrixdata#findallplayers'
 
-  get '/players/match_history/:id' => 'players#match_history'
+  get '/players/_match_history/:id' => 'players#match_history'
 
   get '/players/whatif/:id' => 'players#whatif'
 
@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
 
+  resources :password_resets, only: [:new, :create]
+
   resources :competitions
 
   resources :divisions
@@ -32,8 +34,6 @@ Rails.application.routes.draw do
   resources :matches
 
   resources :teams
-
-  resources :players
 
   resources :clubs
 

@@ -8,6 +8,7 @@ class SessionController < ApplicationController
 		player = Player.where(:name => params[:playername]).first
 		if player.present? && (player.authenticate params[:password])
 			session[:player_id] = player.id
+			Player.retrieve(player.id)
 			redirect_to player
 		else
 			redirect_to root_path

@@ -6,7 +6,8 @@
 </p>
 
 <p class="avatarimg">
-  <%= image_tag @player.avatar %>
+  <%= image_tag @player.avatar %><br>
+  <%= link_to "Change Avatar", edit_player_path(@current_player) %>
 </p>
 </div>
 <div class="playerstats">
@@ -84,6 +85,8 @@
 <div>
   <br>
 
+  <%= render 'match_history' %>
+
 <%= link_to 'What if?', {:action => "whatif", :controller => "players" }, :id => @player.id %>
 
 <%= link_to 'Match History', '/matches/showall' %>
@@ -91,7 +94,7 @@
 
 <%= link_to "click here" , {:action => "match_history", :controller => "players" }, :id => @player.id %>
 <%= link_to 'Edit', edit_player_path(@player) %> |
-<%= link_to 'See All Players', players_path %>
+
 
 <%= form_tag '/results', :method => :get do %>
 <%= submit_tag 'Get Data', :class => "btn btn-default" %>

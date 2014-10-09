@@ -26,15 +26,8 @@ class Match < ActiveRecord::Base
 
   def self.retrieve_all(player_id)
   	player = Player.find(player_id)
-  	# def player.matches
-  	# 	Match.where('winner_id = ? OR loser_id = ?', player.id, player.id)
-  	# end
+  	@matches = Match.where('winner_id = ? OR loser_id = ?', player.id, player.id)
 
-
-  	# @matches_won = Match.where(:winner_id => player_id)
-   #  @matches_lost = Match.where(:loser_id => player_id)
-   #  @matches << @matches_won << @matches_lost
-  	
 
 		@agent = Player.login unless @agent
 
@@ -44,14 +37,15 @@ class Match < ActiveRecord::Base
 
 		doc = page.parser
 		trs = doc.css('tr')
-
+		counter = 0
 		trs.each do |tr|
+
+			while counter < 10 do
 			match = Match.create
 			match.date = tr.css('td')[0].text
 			# match.competition = tr.css('td')[1].text 
 			# match.division = tr.css('td')[2].text
-			counter = 0
-			while counter < 10 do
+			
 			if tr.css('td')[7].text.to_i > 0
 				match.winner_id = player_id
 				match.loser_id = tr.css("td a").map { |a| a.get_attribute('href').split('/').last }.uniq.first
@@ -71,7 +65,7 @@ class Match < ActiveRecord::Base
 			end
 
 			match.save
-			player.matches << match
+			@matches << match
 			counter += 1
 		end
 		end			

@@ -8,7 +8,16 @@
 </head>
 <body>
   <div id="fb-root"></div>
-<script>(function(d, s, id) {
+
+<script>
+   window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '284167801776513',
+      xfbml      : true,
+      version    : 'v2.1'
+    });
+  };
+  (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
@@ -29,12 +38,14 @@
     <div class="navbar-collapse collapse">
           <% if @current_player.present? %>
       <ul class="nav navbar-nav">
-        <li class="active"><%= link_to('Players', players_path) %></li>
+        <li class="active"><%= link_to('My Profile', @current_player) %></li>
+        <li><%= link_to('My Match History', '/results') %></li>
+        <li><%= link_to('All Players', players_path) %></li>
         <li><%= link_to('Clubs', clubs_path) %></li>
         <li><%= link_to('Teams', teams_path) %></li>
         <li><%= link_to('Divisions', divisions_path) %></li>
         <li><%= link_to('Competitions', competitions_path) %></li>
-        <li><%= link_to('Matches', '/results') %></li>
+        
     </ul>
 <ul class="nav navbar-right navbar-nav">
     <li class="dropdown">

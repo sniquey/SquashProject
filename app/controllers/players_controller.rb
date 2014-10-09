@@ -6,11 +6,14 @@ class PlayersController < ApplicationController
 
   def match_history
       @player = Player.find params[:id]
+      @matches_first = Match.where('winner_id = ? OR loser_id = ?', @player.id, @player.id)
+      @matches = []
+      @matches = @matches_first.where(:winner_games.empty? == false)
+      # @matches = @matches.sort_by(:date, value) { |match| match.date }
       # @matches = []
       # @matches_won = Match.where(:winner_id => @player.id)
       # @matches_lost = Match.where(:loser_id => @player.id)
       # @matches << @matches_won << @matches_lost
-      @player.matches = Match.where('winner_id = ? OR loser_id = ?', @player.id, @player.id)
   end
 
   def verify
@@ -47,6 +50,14 @@ class PlayersController < ApplicationController
   def show
     @player = Player.find params[:id]
     @clubs = Club.all
+      @matches_first = Match.where('winner_id = ? OR loser_id = ?', @player.id, @player.id)
+      @matches = []
+      @matches = @matches_first.where(:winner_games.empty? == false)
+      # @matches = @matches.sort_by(:date, value) { |match| match.date }
+      # @matches = []
+      # @matches_won = Match.where(:winner_id => @player.id)
+      # @matches_lost = Match.where(:loser_id => @player.id)
+      # @matches << @matches_won << @matches_lost
   end
 
   def whatif

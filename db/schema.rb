@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141004074103) do
+ActiveRecord::Schema.define(version: 20141009094600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,8 +67,11 @@ ActiveRecord::Schema.define(version: 20141004074103) do
     t.datetime "updated_at"
     t.string   "email"
     t.string   "password_digest"
-    t.text     "avatar",          default: "http://top10hm.com/wp-content/uploads/2012/06/Squash-300x200.jpg"
+    t.text     "avatar",               default: "http://top10hm.com/wp-content/uploads/2012/06/Squash-300x200.jpg"
+    t.string   "password_reset_token"
   end
+
+  add_index "players", ["password_reset_token"], name: "index_players_on_password_reset_token", using: :btree
 
   create_table "players_teams", id: false, force: true do |t|
     t.integer  "player_id"

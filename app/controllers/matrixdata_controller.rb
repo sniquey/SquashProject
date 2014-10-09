@@ -36,7 +36,7 @@ class MatrixdataController < ApplicationController
 		form["UserName"] = "veronique_eldridge@hotmail.com"
 		form["Password"] = "Chicken007"
 		form.submit
-		@x = 22464
+		@x = @current_player.id
 		url = "http://squashmatrix.com/Home/PlayerResults/22646?max=0&X-Requested-With=XMLHttpRequest"
 		page = agent.get(url)
 		@doc = page.parser

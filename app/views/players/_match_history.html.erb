@@ -1,0 +1,92 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Recent matches</h2>
+
+<table class = "table table-striped">
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Opponent</th>
+      <th>Date</th>
+      <th>Result</th>
+      <th>Games</th>
+    <th>Points</th>
+      <th colspan="7"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% i = 0 %>
+  	 <% @matches.each do |match| %>
+     <% if i < 10 %>
+        <% if match.winner_id == @player.id %>
+        <% @opponent = nil unless @opponent = Player.find_by(:id => match.loser_id) %>
+          <tr> 
+            <td> <%= @player.name %></td>
+            <% if @opponent.nil? %>
+             <td><%= match.loser_id %> </td>
+              <% else %>
+              <td><%= @opponent.name %></td>    
+           
+              <% end %>
+            <td><%= match.date %></td>
+            <td>Win!</td>
+            <td>
+              <table>
+          		  <tr>
+          			 <td><%= match.winner_games %>: </td>
+          			 <td><%= match.loser_games %></td>
+  				      </tr>
+          	 </table>
+      	   </td>
+      	   <td>
+            <table>
+          		<tr>
+          			<td><%= match.winner_points %>: </td>
+          			<td><%= match.loser_points %></td>
+  				    </tr>
+          	</table>
+      	   </td>
+        
+        </tr>
+      <% elsif match.loser_id == @player.id %>
+      <% @opponent = nil unless @opponent = Player.find_by(:id => match.winner_id) %>
+        <tr> 
+          <td><%= @player.name %></td>
+            <% if @opponent.nil? %>
+            <td><%= match.winner_id %> </td>
+            <% else %>
+                      <td><%= @opponent.name %></td> 
+           
+            <% end %>
+          <td><%= match.date %></td>
+
+          <td>Loss</td>
+          <td>
+            <table>
+              <tr>
+                <td><%= match.loser_games %>: </td>
+                <td><%= match.winner_games %></td>
+              </tr>
+            </table>
+          </td>
+          <td>  
+            <table>
+              <tr>
+                <td><%= match.loser_points %>: </td>
+                <td><%= match.winner_points %></td>
+              </tr>
+            </table>
+          </td>
+ 
+        </tr>
+  		<% end %>
+      <% i += 1 %>
+      <% end %>
+    <% end %>
+
+  </tbody>
+</table>
+
+<br>
+
