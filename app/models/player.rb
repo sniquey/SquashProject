@@ -66,17 +66,17 @@ class Player < ActiveRecord::Base
 		player.name = doc.css('h1').first.text
 		player.id = doc.css('table tr td')[1].text
 		player.matrix = doc.css('table tr td')[3].text.to_f
-		club_data = doc.css('table ul li a').map {|a| a.get_attribute('href')}.uniq
-		if club_data.any?
-			club_id = club_data.first.split('/').try(:last)
-		 	player.club_id = club_id
-		 	Club.retrieve(club_id)
-		 end
+		# club_data = doc.css('table ul li a').map {|a| a.get_attribute('href')}.uniq
+		# if club_data.any?
+		# 	club_id = club_data.first.split('/').try(:last)
+		#  	player.club_id = club_id
+		#  	Club.retrieve(club_id)
+		#  end
 		player.email = "happy#{ Random.rand }@mondays.com"
 		player.password = "chicken"
 		player.password_confirmation = "chicken"
 		
-		Match.retrieve_all(player_id)
+		Match.retrieve_all(player.id)
 
 		player.save
 		player

@@ -49,19 +49,19 @@ class Match < ActiveRecord::Base
 			if tr.css('td')[7].text.to_i > 0
 				match.winner_id = player_id
 				match.loser_id = tr.css("td a").map { |a| a.get_attribute('href').split('/').last }.uniq.first
-				match.winner_games = tr.css('td')[5]   #.split('-').first
-				# match.loser_games = tr.css('td')[5].split('-').last
-				match.winner_points = tr.css('td')[6]   #.text.split('-').first
-				# match.loser_points = tr.css('td')[6].text.split('-').last
-				match.winner_matrix_change = tr.css('td')[7].text
+				match.winner_games = tr.css('td')[5].split('-').first.to_i
+				match.loser_games = tr.css('td')[5].split('-').last.to_i
+				match.winner_points = tr.css('td')[6].text.split('-').first.to_i
+				match.loser_points = tr.css('td')[6].text.split('-').last.to_i
+				match.winner_matrix_change = tr.css('td')[7].text.to_i
 			else
 				match.loser_id = player_id
 				match.winner_id = tr.css("td a").map { |a| a.get_attribute('href').split('/').last }.uniq.first
-				match.winner_games = tr.css('td')[5]  #.split('-').last
-				#match.loser_games = tr.css('td')[5].split('-').first
-				match.winner_points = tr.css('td')[6]  #.text.split('-').last
-				#match.loser_points = tr.css('td')[6].text.split('-').first
-				match.loser_matrix_change = tr.css('td')[7].text
+				match.winner_games = tr.css('td')[5].split('-').last.to_i
+				match.loser_games = tr.css('td')[5].split('-').first.to_i
+				match.winner_points = tr.css('td')[6]  #.text.split('-').last.to_i
+				match.loser_points = tr.css('td')[6].text.split('-').first.to_i
+				match.loser_matrix_change = tr.css('td')[7].text.to_i
 			end
 
 			match.save
