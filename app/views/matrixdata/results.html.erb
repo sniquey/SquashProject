@@ -3,20 +3,20 @@
 <%= @trs.each do |tr| %>
 
 <tr>
-	<td class="Date"><%= tr.css('td')[0].text %> </td>
-	<td class="Event"><%= tr.css('td')[1].text %> </td>
-	<td class="Div"><%= tr.css('td')[2].text %> </td>
-	<td class="Round"><%= tr.css('td')[3].text %> </td>
-	<td class="Pos"><%= tr.css('td')[4].text %> </td>
-	<td class="games"><%= tr.css('td')[5].text.split('-').first %> </td>
-	<td class="points"><%= tr.css('td')[6].text %> </td>
-	<td class="matrix_change"><%= tr.css('td')[7].text %> </td>
-	<td class="matrix"><%= tr.css('td')[8].text %> </td>
-	<td class="opponent"><%= tr.css('td')[9].text %> </td>
+	<td class="Date"><%= tr.css('td')[0].text %></td>
+	<td class="Event"><%= tr.css('td')[1].text %></td>
+	<td class="Div"><%= tr.css('td')[2].text %></td>
+	<td class="Round"><%= tr.css('td')[3].text %></td>
+	<td class="Pos"><%= tr.css('td')[4].text %></td>
+	<td class="games"><%= tr.css('td')[5].text.split('-').first %></td>
+	<td class="points"><%= tr.css('td')[6].text %></td>
+	<td class="matrix_change"><%= tr.css('td')[7].text %></td>
+	<td class="matrix"><%= tr.css('td')[8].text %></td>
+	<td class="opponent"><%= tr.css('td')[9].text %></td>
 	<% @all_opponents_ids = [] %>
-	<td class="opponent_id"><%= opponent_id = tr.css("td a").map { |a| a.get_attribute('href').split('/').last }.uniq.first %> </td>
+	<td class="opponent_id"><%= opponent_id = tr.css("td a").map { |a| a.get_attribute('href').split('/').last }.uniq.first %></td>
 	<% @all_opponents_ids << opponent_id %>
-	<td><%#= tr.css("td a").get_attribute('href') %> </td>
+	<td><%#= tr.css("td a").get_attribute('href') %></td>
 	<% @all_opponents_ids %>
 
 </tr>

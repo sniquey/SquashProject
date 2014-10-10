@@ -1,0 +1,30 @@
+<% @trsme.each do |tr| %>
+
+			<% match = Match.create %>
+			<% match.date = tr.css('td')[0].text %>
+			<!-- # match.competition = tr.css('td')[1].text 
+			# match.division = tr.css('td')[2].text -->
+			
+			<% if tr.css('td')[6].to_s.split('-').first.to_i > tr.css('td')[6].to_s.split('-').last.to_i %>
+				<% match.winner_id = @current_player.id %>
+				<% match.loser_id = tr.css('td')[9].text.to_i %>
+				<% match.winner_games = tr.css('td')[5].text.to_i %>
+				<% match.winner_points = tr.css('td')[6].to_s.split('-').first.to_i %>
+				<% match.loser_points = tr.css('td')[6].to_s.split('-').last.to_i %>
+				<% match.winner_before_matrix = tr.css('td')[8].text.to_i %>
+				<% match.winner_matrix_change = tr.css('td')[7].text.to_i %>
+			<% else %>
+				<% match.loser_id = @current_player.id %>
+				<% match.winner_id = tr.css('td')[9].text.to_i %>
+				<% match.loser_games = tr.css('td')[5].text.to_i %>
+				<% match.loser_points = tr.css('td')[6].text.split('-').first.to_i %>
+				<% match.winner_points = tr.css('td')[6].text.split('-').last.to_i %>
+				<% match.loser_before_matrix = tr.css('td')[8].text.to_s.split('-').first.to_i %>
+				<% match.loser_matrix_change = tr.css('td')[7].text.to_i %>
+			<% end %>
+
+			<% match.save %>
+			<% @current_player_matches << match %>
+<% end %>	
+
+<%= @current_player_matches %>		

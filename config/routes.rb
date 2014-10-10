@@ -79,6 +79,8 @@ Rails.application.routes.draw do
 
   get '/results' => 'matrixdata#results'
 
+  get '/results_saving' => 'matrixdata#results_saving'
+
   post '/whatif_results/:id' => 'players#whatif'
 
   get '/findallplayers' => 'matrixdata#findallplayers'

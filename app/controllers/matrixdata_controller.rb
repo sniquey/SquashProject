@@ -28,6 +28,19 @@ class MatrixdataController < ApplicationController
 		# end
 	end
 
+	def results_saving
+		Player.retrieve(@current_player.id)
+		@agentme = Mechanize.new
+		url = "https://localhost:3000/results"
+		page = @agentme.get(url)
+
+  		@current_player_matches = Match.where('winner_id = ? OR loser_id = ?', @current_player.id, @current_player.id)
+
+		@doc = page.parser
+		@trs = @doc.css('tr')
+	
+	end
+
 	def results
 
 		agent = Mechanize.new
