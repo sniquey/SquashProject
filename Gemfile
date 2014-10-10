@@ -35,8 +35,7 @@ gem 'nokogiri'
 
 gem 'twitter-bootstrap-rails'#, :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
 
-gem "paperclip", "~> 4.2"
-gem 'aws-sdk'
+#gem "paperclip", "~> 4.2"
 
 group :development do
   gem 'pry-rails'

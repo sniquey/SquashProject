@@ -1,15 +1,18 @@
 
-<div class="titledescription">
-   <h1>Sydney Squash Player Site</h1>
-    <p>Site for squash players to see their stats, ranking, player history and project future progress</p>
-    </div>
-    <div class="signup">
-    <%= link_to('Signup', new_player_path) %>
-    </div>
+<div class="title-area">
+  <% if @current_player.present? %>
+  <% else %>
+   <h1 class = "text-center">Sydney Squash Player Site</h1>
+    <h3 class = "text-center">A squash dashboard for players to see their rankings, statistics, history and project future progress.</h3>
+
+
+    <%= link_to('Signup', new_player_path, :class=>"signup-btn center-block btn btn-primary btn-lg") %>
+    <% end %>
+      </div>
+
    
 
-</div>
- <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+ <div id="carousel-example-generic" class="carousel home-carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -40,3 +43,6 @@
   <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
     <span class="glyphicon glyphicon-chevron-right"></span>
   </a>
+</div>
+
+</div>

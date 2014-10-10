@@ -50,7 +50,7 @@ class Player < ActiveRecord::Base
 		self.login unless @agent
 
 		url = "http://www.squashmatrix.com/Home/Player/#{squashmatrix_id}"
-		counter = 0
+		#counter = 0
 		begin
 			puts "Fetching player from #{url}"
 			page = @agent.get(url)
@@ -66,25 +66,24 @@ class Player < ActiveRecord::Base
 		player.name = doc.css('h1').first.text
 		player.id = doc.css('table tr td')[1].text
 		player.matrix = doc.css('table tr td')[3].text.to_f
-		# club_data = doc.css('table ul li a').map {|a| a.get_attribute('href')}.uniq
-		# if club_data.any?
-		# 	club_id = club_data.first.split('/').try(:last)
-		#  	player.club_id = club_id
-		#  	Club.retrieve(club_id)
-		#  end
+		club_data = doc.css('table ul li a').map {|a| a.get_attribute('href')}.uniq
+		if club_data.any?
+			club_id = club_data.first.split('/').try(:last)
+		 	player.club_id = club_id
+		 	Club.retrieve(club_id)
+		end
 		player.email = "happy#{ Random.rand }@mondays.com"
 		player.password = "chicken"
 		player.password_confirmation = "chicken"
-		
-		Match.retrieve_all(player.id)
 
 		player.save
+		
+		Match.retrieve_all(squashmatrix_id)
+
+		
 		player
 	end
 
-	def generate_password_reset_token!
-		update_attribute(:password_reset_token, SecureRandom.urlsafe_base64(48))
-	end
 
 	def self.login
 		puts "Logging in to Squash Matrix"
@@ -95,9 +94,14 @@ class Player < ActiveRecord::Base
 		form["UserName"] = "veronique_eldridge@hotmail.com"
 		#form["UserName"] = "swalden8@gmail.com"
 		form["Password"] = "Chicken007"
+		#form["Password"] = "chicken"
 
 		form.submit
 
 		@agent
+	end
+
+	def generate_password_reset_token!
+		update_attribute(:password_reset_token, SecureRandom.urlsafe_base64(48))
 	end
 end

@@ -56,29 +56,26 @@
 
 <% end %>
 </div>
+
+
 <div class="winplanner">
-  <h3> Plan your next win! </h3>
+    <h3> Plan your next win! </h3>
 
-<%= form_tag do %>
-  Form contents
-<%= submit_tag %>
-<% end %>
+    <%= form_tag do %>
+      <div class="field">
+        <span class="whatif"> Winner </span>
+        <input type="text" name="winner" value="<%= @current_player.name %>" placeholder="<%= @current_player.name %>" class="whatif_field">
+        <span class="whatif"> Loser </span>
+         <input type="text" name="loser" value="Clifton Rushby" class="whatif_field">
+      </div>
+      <%= submit_tag 'Get future matrix!', :class=> "futurematrixsubmit" %>
+    <% end %>
+    
+    <%= render 'whatif' %>
 
-<%#= form_tag :action => 'whatif', :controller => "players", :id => @player.id, :method => :post do %>
-
-  <!-- <div class="field">
-    <p class="whatif"> Winner <p>
-    <input type="text" name="winner" value="<%#= @current_player.name %>" placeholder="<%#= @current_player.name %>" class="whatif_field">
-  </div>
-  <div class="field">
-  <p class="whatif"> Loser <p>
-    <input type="text" name="loser" class="whatif_field">
-  </div> -->
-
-<%#= submit_tag 'Get future matrix!', :class=> "futurematrixsubmit" %>
-<%# end %>
-
-<%= yield %>
+    <div class="winloss">
+        <h3>Your Win/Loss Ratio: <%= @player.wins.count %> : <%= @player.loses.count %></h3>
+    </div>
 
 </div>
 
@@ -87,16 +84,9 @@
 
   <%= render 'match_history' %>
 
-<%= link_to 'What if?', {:action => "whatif", :controller => "players" }, :id => @player.id %>
-
-<%= link_to 'Match History', '/matches/showall' %>
-
-
-<%= link_to "click here" , {:action => "match_history", :controller => "players" }, :id => @player.id %>
-<%= link_to 'Edit', edit_player_path(@player) %> |
 
 
 <%= form_tag '/results', :method => :get do %>
-<%= submit_tag 'Get Data', :class => "btn btn-default" %>
+<%= submit_tag 'Get Entire Match History', :class => "btn btn-default" %>
 <% end %>
 </div>

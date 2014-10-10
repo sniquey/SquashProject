@@ -50,9 +50,12 @@ class PlayersController < ApplicationController
   def show
     @player = Player.find params[:id]
     @clubs = Club.all
-      @matches_first = Match.where('winner_id = ? OR loser_id = ?', @player.id, @player.id)
-      @matches = []
-      @matches = @matches_first.where(:winner_games.empty? == false)
+    @matches =[]
+    @matches_first = Match.where('winner_id = ? OR loser_id = ?', @player.id, @player.id)
+      @matches = @matches_first.where(:winner_games.nil? == false)
+
+
+
       # @matches = @matches.sort_by(:date, value) { |match| match.date }
       # @matches = []
       # @matches_won = Match.where(:winner_id => @player.id)
@@ -62,16 +65,25 @@ class PlayersController < ApplicationController
 
   def whatif
     @player = Player.find params[:id]
-    @winner = params[:winner].to_s
-    @loser = params[:loser].to_s
-    @winner_player = Player.find_by[:name => @winner]
-    @loser_player = Player.find_by[:name => @loser]
-    # if @winner_player.exists? && @loser_player.exists?
-      @diff = @winner_player.matrix - @loser_player.matrix
-    # else
-    #   render "Error. You must enter valid player names."
+    @winner_name = params[:winner].to_s
+    @winner = Player.find_by(:name => @winner_name)
+    @loser_name = params[:loser].to_s
+    @loser = Player.find_by(:name => @loser_name)
+    if @loser
+     @winner_matrix = @winner.matrix
+
+    else
+        @loser = Player.find_by(:id => 8898)
+  @winner_matrix = @winner.matrix
+    # @loser_player = Player.find_by[:name => @loser]
+    # if @winner_player.any? && @loser_player.any?
+    # #   @diff = @winner_player.matrix - @loser_player.matrix
+    # #else
+    # #  render "Error. You must enter valid player names."
     # end
-    # redirect_to player
+   
+    end 
+    redirect_to @player
   end
 
   def whatif_results
@@ -139,6 +151,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name, :avatar, :id, :player_num, :club_id, :password, :password_confirmation)
+      params.require(:player).permit(:name, :email, :avatar, :id, :player_num, :club_id, :password, :password_confirmation)
     end
 end
